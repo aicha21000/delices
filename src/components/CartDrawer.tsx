@@ -33,7 +33,12 @@ export default function CartDrawer() {
                         <p className={styles.empty}>Votre panier est vide.</p>
                     ) : (
                         items.map((item) => {
-                            const price = item.type === 'unit' ? item.product.priceUnit : item.product.priceBox;
+                            const price = item.type === 'unit' ? item.product.priceUnit :
+                                item.type === 'box6' ? item.product.priceBox6 :
+                                    item.product.priceBox15;
+                            const typeLabel = item.type === 'unit' ? 'À l\'unité' :
+                                item.type === 'box6' ? 'Boîte de 6' :
+                                    'Boîte de 15';
                             return (
                                 <div key={`${item.productId}-${item.type}`} className={styles.item}>
                                     <div className={styles.itemImage}>
@@ -47,7 +52,7 @@ export default function CartDrawer() {
                                     <div className={styles.itemDetails}>
                                         <div className={styles.itemName}>{item.product.name}</div>
                                         <div className={styles.itemType}>
-                                            {item.type === 'unit' ? 'À la pièce' : 'Boîte'} x {item.quantity}
+                                            {typeLabel} x {item.quantity}
                                         </div>
                                         <div className={styles.itemPrice}>{(price * item.quantity).toFixed(2)} €</div>
                                     </div>

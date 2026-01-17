@@ -12,10 +12,12 @@ interface Props {
 }
 
 export default function ProductCard({ product }: Props) {
-    const [type, setType] = useState<'unit' | 'box'>('box');
+    const [type, setType] = useState<'unit' | 'box6' | 'box15'>('box6');
     const addItem = useCartStore((state) => state.addItem);
 
-    const price = type === 'unit' ? product.priceUnit : product.priceBox;
+    const price = type === 'unit' ? product.priceUnit :
+        type === 'box6' ? product.priceBox6 :
+            product.priceBox15;
 
     return (
         <div className={styles.card}>
@@ -38,17 +40,21 @@ export default function ProductCard({ product }: Props) {
                             className={`${styles.option} ${type === 'unit' ? styles.active : ''}`}
                             onClick={() => setType('unit')}
                         >
-                            Pièce ({product.priceUnit.toFixed(2)}€)
+                            Unité<br /><span className={styles.optionPrice}>{product.priceUnit.toFixed(2)}€</span>
                         </div>
                         <div
-                            className={`${styles.option} ${type === 'box' ? styles.active : ''}`}
-                            onClick={() => setType('box')}
+                            className={`${styles.option} ${type === 'box6' ? styles.active : ''}`}
+                            onClick={() => setType('box6')}
                         >
-                            Boîte ({product.priceBox.toFixed(2)}€)
+                            Boîte 6<br /><span className={styles.optionPrice}>{product.priceBox6.toFixed(2)}€</span>
+                        </div>
+                        <div
+                            className={`${styles.option} ${type === 'box15' ? styles.active : ''}`}
+                            onClick={() => setType('box15')}
+                        >
+                            Boîte 15<br /><span className={styles.optionPrice}>{product.priceBox15.toFixed(2)}€</span>
                         </div>
                     </div>
-
-                    <span className={styles.price}>{price.toFixed(2)} €</span>
 
                     <button
                         className={styles.addButton}
