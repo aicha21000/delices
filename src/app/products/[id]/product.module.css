@@ -192,3 +192,25 @@
         font-size: 2rem;
     }
 }
+
+.facebookBtn {
+    margin-top: 1rem;
+    background: #1877F2;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.facebookBtn:hover {
+    background: #166fe5;
+}
