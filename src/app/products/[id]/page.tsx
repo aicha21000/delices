@@ -23,7 +23,18 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
         title: `${product.name} - Les Délices Sucrés`,
         description: product.description,
         openGraph: {
-            images: [product.image],
+            title: `${product.name} - Les Délices Sucrés`,
+            description: product.description,
+            url: `/products/${product.id}`,
+            images: [
+                {
+                    url: product.image,
+                    width: 800,
+                    height: 600,
+                    alt: product.name,
+                },
+            ],
+            type: 'website',
         },
     };
 }

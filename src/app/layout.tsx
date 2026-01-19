@@ -7,11 +7,20 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: "Les Délices Sucrés - Gâteaux Traditionnels",
   description: "Vente de gâteaux traditionnels orientaux et biscuits secs faits maison. Produits naturels.",
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-icon.png',
+  },
+  openGraph: {
+    title: "Les Délices Sucrés - Gâteaux Traditionnels",
+    description: "Vente de gâteaux traditionnels orientaux et biscuits secs faits maison. Produits naturels.",
+    url: '/',
+    siteName: 'Les Délices Sucrés',
+    locale: 'fr_FR',
+    type: 'website',
   },
 };
 

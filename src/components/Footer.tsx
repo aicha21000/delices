@@ -60,6 +60,12 @@ export default function Footer() {
                     </div>
                 </div>
 
+                <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)', padding: '1.5rem 0', marginTop: '2rem', display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap' }}>
+                    <Link href="/mentions-legales" style={{ color: '#ffffff', fontSize: '0.9rem', textDecoration: 'none', opacity: 0.8 }}>Mentions Légales</Link>
+                    <Link href="/cgv" style={{ color: '#ffffff', fontSize: '0.9rem', textDecoration: 'none', opacity: 0.8 }}>CGV</Link>
+                    <Link href="/confidentialite" style={{ color: '#ffffff', fontSize: '0.9rem', textDecoration: 'none', opacity: 0.8 }}>Politique de Confidentialité</Link>
+                </div>
+
                 <div className={styles.copyright}>
                     © {new Date().getFullYear()} Les Délices Sucrés. Tous droits réservés.
                 </div>
