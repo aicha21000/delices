@@ -4,14 +4,23 @@ import { X, CreditCard } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 import Image from 'next/image';
 import styles from './CartDrawer.module.css';
+import { useRouter } from 'next/navigation';
+
+import { useEffect, useState } from 'react';
 
 export default function CartDrawer() {
     const { isOpen, items, toggleCart, removeItem, total } = useCartStore();
+    const router = useRouter();
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) return null;
 
     const handleCheckout = async () => {
-        // Integration with Stripe would go here.
-        // For now, we'll alert.
-        alert('Redirection vers le paiement Stripe...');
+        router.push('/checkout');
     };
 
     return (
@@ -46,6 +55,7 @@ export default function CartDrawer() {
                                             src={item.product.image}
                                             alt={item.product.name}
                                             fill
+                                            sizes="80px"
                                             style={{ objectFit: 'cover' }}
                                         />
                                     </div>
