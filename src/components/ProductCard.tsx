@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Product } from '@/lib/data';
 import { useCartStore } from '@/lib/store';
 import WatermarkedImage from './WatermarkedImage';
@@ -21,17 +22,21 @@ export default function ProductCard({ product }: Props) {
 
     return (
         <div className={styles.card}>
-            <div className={styles.imageContainer}>
-                <WatermarkedImage
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    style={{ objectFit: 'cover' }}
-                />
-            </div>
+            <Link href={`/products/${product.id}`} className={styles.imageLink} style={{ display: 'block' }}>
+                <div className={styles.imageContainer}>
+                    <WatermarkedImage
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        style={{ objectFit: 'cover' }}
+                    />
+                </div>
+            </Link>
             <div className={styles.content}>
-                <h3 className={styles.title}>{product.name}</h3>
+                <Link href={`/products/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <h3 className={styles.title}>{product.name}</h3>
+                </Link>
                 <p className={styles.description}>{product.description}</p>
 
                 <div className={styles.controls}>
