@@ -92,7 +92,7 @@ export const products: Product[] = [
         priceUnit: 1.50,
         priceBox6: 6.00,
         priceBox15: 20.00,
-        image: '/images/sables-chocolat.png',
+        image: '/images/sables_chocolat.png',
         category: 'biscuits',
     },
     {
