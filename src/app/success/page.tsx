@@ -1,13 +1,13 @@
 'use client';
 
+import { Suspense, useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useCartStore } from '@/lib/store';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import styles from './success.module.css';
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { useCartStore } from '@/lib/store';
 
-export default function SuccessPage() {
+function SuccessContent() {
     const searchParams = useSearchParams();
     const sessionId = searchParams.get('session_id');
     const { clearCart } = useCartStore();
@@ -74,5 +74,13 @@ export default function SuccessPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function SuccessPage() {
+    return (
+        <Suspense fallback={<div className={styles.container}><div className={styles.card}>Chargement...</div></div>}>
+            <SuccessContent />
+        </Suspense>
     );
 }
