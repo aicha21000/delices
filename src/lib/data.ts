@@ -107,8 +107,8 @@ export const products: Product[] = [
     },
     {
         id: '10',
-        name: 'Cookies',
-        description: 'Des cookies gourmands aux pépites de chocolat. Croustillants à l\'extérieur et moelleux à l\'intérieur, ces biscuits américanisés à la française raviront petits et grands.',
+        name: 'Fruits gourmands',
+        description: 'Des fruits en pâte d\’amande, colorés et délicieux. Fondantes en bouche, raffinées et colorées.Parfaits pour accompagner un thé ou un café.',
         priceUnit: 1.50,
         priceBox6: 6.00,
         priceBox15: 20.00,
@@ -117,8 +117,8 @@ export const products: Product[] = [
     },
     {
         id: '11',
-        name: 'Madeleine',
-        description: 'La madeleine française revisitée. Ces petits gâteaux moelleux au parfum de citron et de fleur d\'oranger apportent une touche de douceur à vos pauses gourmandes.',
+        name: 'Gâteaux au Citron',
+        description: 'Petits gâteaux glacés au citron Fondants, frais et délicatement nappés, avec une touche de chocolat.',
         priceUnit: 1.50,
         priceBox6: 6.00,
         priceBox15: 20.00,
