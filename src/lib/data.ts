@@ -137,4 +137,14 @@ export const products: Product[] = [
         image: '/images/croquets.png',
         category: 'biscuits',
     },
+    {
+        id: '13',
+        name: 'Cookies',
+        description: 'Des cookies croustillants à l\'extérieur et moelleux à l\'intérieur, généreusement garnis de pépites de chocolat. Une gourmandise réconfortante à tout moment de la journée.',
+        priceUnit: 1.50,
+        priceBox6: 6.00,
+        priceBox15: 20.00,
+        image: '/images/Cookies.png',
+        category: 'biscuits',
+    },
 ];
