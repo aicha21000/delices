@@ -1,3 +1,6 @@
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import CartDrawer from '@/components/CartDrawer';
 import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google"; // Import Google Fonts
 import "./globals.css";
@@ -32,7 +35,10 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${inter.variable} ${outfit.variable}`}>
+        <Header />
         {children}
+        <Footer />
+        <CartDrawer />
       </body>
     </html>
   );

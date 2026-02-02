@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import WatermarkedImage from '@/components/WatermarkedImage';
 import { Send, Phone, Mail, MapPin, Loader2 } from 'lucide-react';
 
@@ -43,8 +41,6 @@ export default function ContactPage() {
 
     return (
         <main>
-            <Header />
-
             {/* Hero Section */}
             <section style={{ position: 'relative', height: '40vh', minHeight: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
                 <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
@@ -194,8 +190,6 @@ export default function ContactPage() {
 
                 </div>
             </section>
-
-            <Footer />
         </main>
     );
 }

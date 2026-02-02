@@ -35,10 +35,12 @@ export default function Header() {
                 </nav>
 
                 <div className={styles.actions}>
-                    <button className={styles.cartButton} onClick={toggleCart} aria-label="Panier">
-                        <ShoppingCart size={24} />
-                        {count > 0 && <span className={styles.badge}>{count}</span>}
-                    </button>
+                    {count > 0 && (
+                        <button className={styles.cartButton} onClick={toggleCart} aria-label="Panier">
+                            <ShoppingCart size={24} />
+                            <span className={styles.badge}>{count}</span>
+                        </button>
+                    )}
 
                     <button
                         className={styles.mobileMenuBtn}
