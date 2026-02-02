@@ -20,6 +20,7 @@ export default function CartDrawer() {
     if (!isMounted) return null;
 
     const handleCheckout = async () => {
+        toggleCart();
         router.push('/checkout');
     };
 
