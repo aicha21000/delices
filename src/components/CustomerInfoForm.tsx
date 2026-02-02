@@ -26,6 +26,9 @@ export default function CustomerInfoForm() {
         comments: '',
     });
 
+    // State for validation errors
+    const [errors, setErrors] = useState<Record<string, string>>({});
+
     useEffect(() => {
         if (items.length === 0) {
             router.push('/');
@@ -33,11 +36,36 @@ export default function CustomerInfoForm() {
     }, [items, router]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setForm({ ...form, [name]: value });
+
+        // Clear error when user types
+        if (errors[name]) {
+            setErrors(prev => ({ ...prev, [name]: '' }));
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Validation
+        const newErrors: Record<string, string> = {};
+        if (!form.name.trim()) newErrors.name = 'Le nom est requis';
+        if (!form.email.trim()) newErrors.email = 'L\'adresse e-mail est requise';
+        else if (!/\S+@\S+\.\S+/.test(form.email)) newErrors.email = 'Adresse e-mail invalide';
+        if (!form.phone.trim()) newErrors.phone = 'Le téléphone est requis';
+        if (!form.addressLine1.trim()) newErrors.addressLine1 = 'L\'adresse est requise';
+        if (!form.city.trim()) newErrors.city = 'La ville est requise';
+        if (!form.postalCode.trim()) newErrors.postalCode = 'Le code postal est requis';
+        if (!form.country.trim()) newErrors.country = 'Le pays est requis';
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            // Scroll to top of form to see errors
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
         setLoading(true);
 
         try {
@@ -95,7 +123,7 @@ export default function CustomerInfoForm() {
                         country: form.country,
                     },
                     comments: form.comments,
-                    orderId: data.orderId, // Add custom order ID
+                    orderId: data.orderId,
                 };
                 sessionStorage.setItem('orderData', JSON.stringify(orderData));
 
@@ -161,11 +189,13 @@ export default function CustomerInfoForm() {
                         required
                         value={form.name}
                         onChange={handleChange}
-                        className={styles.input}
+                        className={`${styles.input} ${errors.name ? styles.inputError : ''}`}
                         placeholder="Jean Dupont"
                         aria-required="true"
                         autoComplete="name"
+                        aria-invalid={!!errors.name}
                     />
+                    {errors.name && <p className={styles.errorMessage}>{errors.name}</p>}
                 </div>
 
                 {/* Email */}
@@ -180,11 +210,13 @@ export default function CustomerInfoForm() {
                         required
                         value={form.email}
                         onChange={handleChange}
-                        className={styles.input}
+                        className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
                         placeholder="jean.dupont@exemple.fr"
                         aria-required="true"
                         autoComplete="email"
+                        aria-invalid={!!errors.email}
                     />
+                    {errors.email && <p className={styles.errorMessage}>{errors.email}</p>}
                 </div>
 
                 {/* Phone */}
@@ -199,11 +231,13 @@ export default function CustomerInfoForm() {
                         required
                         value={form.phone}
                         onChange={handleChange}
-                        className={styles.input}
+                        className={`${styles.input} ${errors.phone ? styles.inputError : ''}`}
                         placeholder="+33 6 12 34 56 78"
                         aria-required="true"
                         autoComplete="tel"
+                        aria-invalid={!!errors.phone}
                     />
+                    {errors.phone && <p className={styles.errorMessage}>{errors.phone}</p>}
                 </div>
 
                 {/* Address Line 1 */}
@@ -218,11 +252,13 @@ export default function CustomerInfoForm() {
                         required
                         value={form.addressLine1}
                         onChange={handleChange}
-                        className={styles.input}
+                        className={`${styles.input} ${errors.addressLine1 ? styles.inputError : ''}`}
                         placeholder="123 Rue de la Paix"
                         aria-required="true"
                         autoComplete="address-line1"
+                        aria-invalid={!!errors.addressLine1}
                     />
+                    {errors.addressLine1 && <p className={styles.errorMessage}>{errors.addressLine1}</p>}
                 </div>
 
                 {/* Address Line 2 */}
@@ -242,42 +278,25 @@ export default function CustomerInfoForm() {
                     />
                 </div>
 
-                {/* City and State */}
-                <div className={styles.row}>
-                    <div className={styles.formGroup}>
-                        <label htmlFor="city" className={styles.label}>
-                            Ville<span className={styles.required} aria-label="requis">*</span>
-                        </label>
-                        <input
-                            id="city"
-                            name="city"
-                            type="text"
-                            required
-                            value={form.city}
-                            onChange={handleChange}
-                            className={styles.input}
-                            placeholder="Paris"
-                            aria-required="true"
-                            autoComplete="address-level2"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <label htmlFor="state" className={styles.label}>
-                            Région<span className={styles.required} aria-label="requis">*</span>
-                        </label>
-                        <input
-                            id="state"
-                            name="state"
-                            type="text"
-                            required
-                            value={form.state}
-                            onChange={handleChange}
-                            className={styles.input}
-                            placeholder="Île-de-France"
-                            aria-required="true"
-                            autoComplete="address-level1"
-                        />
-                    </div>
+                {/* City */}
+                <div className={styles.formGroup}>
+                    <label htmlFor="city" className={styles.label}>
+                        Ville<span className={styles.required} aria-label="requis">*</span>
+                    </label>
+                    <input
+                        id="city"
+                        name="city"
+                        type="text"
+                        required
+                        value={form.city}
+                        onChange={handleChange}
+                        className={`${styles.input} ${errors.city ? styles.inputError : ''}`}
+                        placeholder="Paris"
+                        aria-required="true"
+                        autoComplete="address-level2"
+                        aria-invalid={!!errors.city}
+                    />
+                    {errors.city && <p className={styles.errorMessage}>{errors.city}</p>}
                 </div>
 
                 {/* Postal Code and Country */}
@@ -293,11 +312,13 @@ export default function CustomerInfoForm() {
                             required
                             value={form.postalCode}
                             onChange={handleChange}
-                            className={styles.input}
+                            className={`${styles.input} ${errors.postalCode ? styles.inputError : ''}`}
                             placeholder="75001"
                             aria-required="true"
                             autoComplete="postal-code"
+                            aria-invalid={!!errors.postalCode}
                         />
+                        {errors.postalCode && <p className={styles.errorMessage}>{errors.postalCode}</p>}
                     </div>
                     <div className={styles.formGroup}>
                         <label htmlFor="country" className={styles.label}>
@@ -310,13 +331,15 @@ export default function CustomerInfoForm() {
                             required
                             value={form.country}
                             onChange={handleChange}
-                            className={styles.input}
+                            className={`${styles.input} ${errors.country ? styles.inputError : ''}`}
                             placeholder="FR"
                             aria-required="true"
                             aria-describedby="country-help"
                             autoComplete="country"
+                            aria-invalid={!!errors.country}
                         />
-                        <p id="country-help" className={styles.helpText}>Code pays ISO (FR, US, CA, etc.)</p>
+                        {errors.country && <p className={styles.errorMessage}>{errors.country}</p>}
+                        {!errors.country && <p id="country-help" className={styles.helpText}>Code pays ISO (FR, US, CA, etc.)</p>}
                     </div>
                 </div>
 
