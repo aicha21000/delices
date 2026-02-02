@@ -147,4 +147,36 @@ export const products: Product[] = [
         image: '/images/Cookies.png',
         category: 'biscuits',
     },
+    {
+        id: '14',
+        name: 'Kalb Louz (Aux Amandes)',
+        description: `Un gâteau traditionnel algérien à base de semoule fine, délicatement imbibé de sirop parfumé à la fleur d’oranger. Fondant et savoureux, il séduit par sa texture généreuse et son goût authentique.
+
+Garni d'amandes croquantes.
+
+Poids :
+• 1 unité : ~125g
+• Boîte de 6 : ~750g`,
+        priceUnit: 3.00,
+        priceBox6: 10.00,
+        priceBox15: 25.00,
+        image: '/images/kalb_louz.png',
+        category: 'gateaux',
+    },
+    {
+        id: '15',
+        name: 'Kalb Louz (Sans Amandes)',
+        description: `Un gâteau traditionnel algérien à base de semoule fine, délicatement imbibé de sirop parfumé à la fleur d’oranger. Fondant et savoureux, il séduit par sa texture généreuse et son goût authentique.
+
+Version nature, sans amandes.
+
+Poids :
+• 1 unité : ~125g
+• Boîte de 6 : ~750g`,
+        priceUnit: 2.00,
+        priceBox6: 8.00,
+        priceBox15: 20.00,
+        image: '/images/kalb_louz.png',
+        category: 'gateaux',
+    },
 ];
